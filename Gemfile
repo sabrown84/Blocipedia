@@ -31,4 +31,5 @@ source 'https://rubygems.org'
    gem 'factory_girl_rails'
  end
 
- gem 'bootstrap-sass'
+  gem 'bootstrap-sass'
+  gem 'devise'
