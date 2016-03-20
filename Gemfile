@@ -18,7 +18,6 @@ source 'https://rubygems.org'
  gem 'jquery-rails'
  gem 'turbolinks'
  gem 'bootstrap'
- gem 'figaro'
  gem 'pry'
 
  group :development, :test do
@@ -34,3 +33,4 @@ source 'https://rubygems.org'
  gem 'bootstrap-sass'
 
  gem 'devise'
+ gem 'figaro', '1.0'
