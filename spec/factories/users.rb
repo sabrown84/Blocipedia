@@ -4,5 +4,6 @@ FactoryGirl.define do
     password 'helloworld'
     password_confirmation 'helloworld'
     confirmed_at Time.now
+
   end
 end
