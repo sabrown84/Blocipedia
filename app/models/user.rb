@@ -5,8 +5,26 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-         has_many :sessions
-         has_many :wikis
+  has_many :sessions
+  has_many :wikis
+
+  after_initialize :set_role
+
+  def admin?
+    role == 'admin'
+  end
+
+  def premium?
+    role == 'premium'
+  end
+
+  def standard?
+    role == 'standard'
+  end
+
+  def set_role
+    self.role ||= 'standard'
+  end
 
   def self.authenitcate(email, password)
     user = find_by_email(email)
