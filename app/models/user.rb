@@ -8,23 +8,12 @@ class User < ActiveRecord::Base
   has_many :sessions
   has_many :wikis
 
+  before_save {self.role ||= :standard }
+
   after_initialize :set_role
 
-  def admin?
-    role == 'admin'
-  end
+  enum role: [:standard, :premium, :admin]
 
-  def premium?
-    role == 'premium'
-  end
-
-  def standard?
-    role == 'standard'
-  end
-
-  def set_role
-    self.role ||= 'standard'
-  end
 
   def self.authenitcate(email, password)
     user = find_by_email(email)
