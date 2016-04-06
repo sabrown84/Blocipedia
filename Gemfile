@@ -18,7 +18,6 @@ source 'https://rubygems.org'
  gem 'jquery-rails'
  gem 'turbolinks'
  gem 'bootstrap'
- gem 'figaro'
  gem 'pry'
 
  group :development, :test do
@@ -31,7 +30,9 @@ source 'https://rubygems.org'
    gem 'factory_girl_rails', '~> 4.0'
  end
 
-  gem 'bootstrap-sass'
-  gem 'devise'
   gem 'pundit'
   gem "bcrypt", :require => "bcrypt"
+ gem 'bootstrap-sass'
+
+ gem 'devise'
+ gem 'figaro', '1.0'

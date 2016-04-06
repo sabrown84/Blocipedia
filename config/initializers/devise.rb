@@ -99,7 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '8fcd1878cd906b4f9f49acb06550b955822fa2e9d1f73debe391efda942b973963c91376657a33b2952d6e32c541af8370257ca16417bacc1df624a0c22fed23'
+  # config.pepper = '4132c520381dcba463370f302ea8480dab95398ddbdf60736fc75c0cbcd4d4d6c2b41da118907d4bfe7a33254bff7669095031aafef0ee791660bf418226ccc3'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -211,6 +211,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
+
   # config.scoped_views = false
 
   # Configure the default scope given to Warden. By default it's the first
