@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.create!(email: "user.blocipedia.com", password: "password") }
+  let(:user) { create :user }
 
   describe "attributes" do
     it "responds to role" do
