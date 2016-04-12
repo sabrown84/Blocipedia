@@ -31,7 +31,6 @@ source 'https://rubygems.org'
  end
 
   gem 'pundit'
-  gem "bcrypt", :require => "bcrypt"
  gem 'bootstrap-sass'
 
  gem 'devise'

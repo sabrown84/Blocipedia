@@ -55,6 +55,10 @@ RSpec.describe User, type: :model do
     end
 
     context "premium user" do
+      before do
+        user.premium!
+      end
+      
       it "returns true for #premium?" do
         expect(user.premium?).to be_truthy
       end
