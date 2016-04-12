@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   after_initialize :set_role
 
+  before_save {self.role ||= :standard}
+
   enum role: [:standard, :premium, :admin]
 
 
