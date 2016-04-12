@@ -3,11 +3,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #:lockable, :timeoutable and :omniauthable
 
-<<<<<<< HEAD
   has_many :sessions
   has_many :wikis
-
-  before_save {self.role ||= :standard }
 
   after_initialize :set_role
 
@@ -29,10 +26,4 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
-=======
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
-         has_many :wikis
-
->>>>>>> wiki-CRUd
 end
