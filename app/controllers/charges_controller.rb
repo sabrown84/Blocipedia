@@ -1,9 +1,12 @@
 class ChargesController < ApplicationController
+  before_action :authenticate_user!
+
+  DEFAULT_AMOUNT = 15_00
   def new
     @stripe_btn_data = {
       key: "#{Rails.configuration.stripe[:publishable_key] }",
-      description: "BigMoney Membership - #{current_user.name}",
-      amount: Amount.default
+      description: "BigMoney Membership - #{current_user.email}",
+      amount: DEFAULT_AMOUNT
     }
   end
 
@@ -18,7 +21,7 @@ class ChargesController < ApplicationController
    # Where the real magic happens
    charge = Stripe::Charge.create(
      customer: customer.id, # Note -- this is NOT the user_id in your app
-     amount: Amount.default,
+     amount: DEFAULT_AMOUNT,
      description: "BigMoney Membership - #{current_user.email}",
      currency: 'usd'
    )
