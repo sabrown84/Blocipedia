@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'sessions/destroy'
+
+  get 'sessions/new'
+
+  get 'users/new'
+
   resources :wikis
   resources :charges, only: [:new, :create]
 
   devise_for :users
+
+  resources :sessions
 
   get 'about' => 'welcome#about'
   # The priority is based upon order of creation: first created -> highest priority.
