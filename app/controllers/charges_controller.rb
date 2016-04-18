@@ -2,6 +2,10 @@ class ChargesController < ApplicationController
   before_action :authenticate_user!
 
   DEFAULT_AMOUNT = 15_00
+
+  def email
+  end
+
   def new
     @stripe_btn_data = {
       key: "#{Rails.configuration.stripe[:publishable_key] }",
