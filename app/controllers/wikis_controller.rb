@@ -8,7 +8,7 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
 
-    unless @wiki.public || current_user
+    unless @wiki.private || current_user
       flash[:alert] = "You must be signed in to view private wikis."
       redirect_to new_session_path
     end

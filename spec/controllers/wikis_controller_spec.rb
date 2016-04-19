@@ -8,7 +8,7 @@ RSpec.describe WikisController, type: :controller do
   end
 
   let(:my_wiki) { create (:wiki) }
-  let(:my_private_wiki) { create(:wiki, public: false) }
+  let(:my_private_wiki) { create(:wiki, private: true) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -35,7 +35,7 @@ RSpec.describe WikisController, type: :controller do
 
     it "redirects from private wikis" do
       get :show, {id: my_private_wiki.id}
-      expect(response).to redirect_to(new_session_path)
+      expect(response).to redirect_to wikis_path
     end
   end
 
