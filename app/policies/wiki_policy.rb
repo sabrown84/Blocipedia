@@ -1,4 +1,4 @@
-class WikiPolicy < Application Policy
+class WikiPolicy < ApplicationPolicy
 
   def index?
     true
@@ -7,7 +7,15 @@ class WikiPolicy < Application Policy
   def show?
   end
 
-  class Scope < Scope
+  def destroy?
+    user.present? && (record.user == user || user.admin?)
+  end
+
+  def update?
+    user.admin? or not wiki.published?
+  end
+
+  class Scope
     attr_reader :user, :scope
 
     def initializer(user,scope)
@@ -16,13 +24,11 @@ class WikiPolicy < Application Policy
     end
 
     def resolve
-      if user.admin?
+#      if user.admin?
       scope.all
+#    end
     end
-  end
 
-  def update?
-    user.admin? or not wiki.published?
-  end
-end
+
+   end
 end

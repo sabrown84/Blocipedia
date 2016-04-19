@@ -14,6 +14,7 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
@@ -52,7 +53,6 @@ class WikisController < ApplicationController
 
    def destroy
      @wiki = Wiki.find(params[:id])
-     title = @wiki.title
      authorize @wiki
 
      if @wiki.destroy
