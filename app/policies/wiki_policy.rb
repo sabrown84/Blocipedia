@@ -15,4 +15,14 @@ class WikiPolicy < Application Policy
       @scope = scope
     end
 
+    def resolve
+      if user.admin?
+      scope.all
+    end
+  end
+
+  def update?
+    user.admin? or not wiki.published?
+  end
+end
 end

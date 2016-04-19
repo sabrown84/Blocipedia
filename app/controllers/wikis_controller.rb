@@ -1,12 +1,15 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
+
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
+    authorize @wikis
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def new
@@ -16,6 +19,8 @@ class WikisController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
+    authorize @wiki
+
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
@@ -27,10 +32,13 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
+
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -45,6 +53,7 @@ class WikisController < ApplicationController
    def destroy
      @wiki = Wiki.find(params[:id])
      title = @wiki.title
+     authorize @wiki
 
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
