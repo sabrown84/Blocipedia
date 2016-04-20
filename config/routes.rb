@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'sessions/destroy'
+  devise_for :users
 
-  get 'sessions/new'
 
   get 'users/new'
 
   resources :wikis
-
-  devise_for :users
-
   resources :sessions
 
   get 'about' => 'welcome#about'
