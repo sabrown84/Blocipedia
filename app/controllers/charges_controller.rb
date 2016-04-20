@@ -17,6 +17,7 @@ class ChargesController < ApplicationController
    customer = Stripe::Customer.create(
      email: current_user.email,
      card: params[:stripeToken]
+
    )
 
    # Where the real magic happens
@@ -27,8 +28,9 @@ class ChargesController < ApplicationController
      currency: 'usd'
    )
 
-   flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
-   redirect_to user_path(current_user) # or wherever
+   current_user.update_attributes(role: 'premium') unless current_user.role == 'premium'
+   flash[:notice] = "Thanks for all the money, #{current_user.email}.  Pay me some more!"
+   redirect_to root_path
 
    # Stripe will send back CardErrors, with friendly messages
    # when something goes wrong.
