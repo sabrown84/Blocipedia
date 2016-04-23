@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :wikis
 
   devise_for :users
+
+  get 'users/new'
+
+  resources :wikis
+  resources :sessions
 
   get 'about' => 'welcome#about'
   # The priority is based upon order of creation: first created -> highest priority.
