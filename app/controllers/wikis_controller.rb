@@ -3,6 +3,7 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.visible_to(current_user)
+    authorize @wikis
   end
 
   def show
