@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322120159) do
+ActiveRecord::Schema.define(version: 20160426014301) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160322120159) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -40,8 +41,9 @@ ActiveRecord::Schema.define(version: 20160322120159) do
     t.text     "body"
     t.boolean  "private"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "public",     default: true
   end
 
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"
