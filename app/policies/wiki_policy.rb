@@ -5,8 +5,8 @@ class WikiPolicy < ApplicationPolicy
     true
   end
 
-  def show?
-    record.private != true || (user.present? && ((user.role == 'admin') || record.user == user || record.users.include?(user)))
+  def show
+    record.public? || user.present?
   end
 
   def update?
