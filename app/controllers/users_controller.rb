@@ -1,18 +1,14 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.all
+before_action :authenticate_user!
+
+
+  def downgrade
+    current_user.update_attribute(:role, 'standard_user')
+    flash[:notice] = "Account downgraded"
+
+    redirect_to (root_path)
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
-    redirect_to users_path, :notice => "User deleted."
-  end
 
 end
