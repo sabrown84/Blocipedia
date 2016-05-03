@@ -36,7 +36,7 @@ class Scope
     elsif user.present? && user.role == 'premium_user'
       all_wikis = scope.all
       all_wikis.each do |wiki|
-        if wiki.private != true || wiki.user == user || wiki.users.include?(user)
+        if wiki.public? || wiki.owner == user || wiki.collaborators.include?(user)
           wikis << wiki
         end
       end
@@ -44,7 +44,7 @@ class Scope
       all_wikis = scope.all
       wikis = []
       all_wikis.each do |wiki|
-        if wiki.private != true || wiki.users.include?(user)
+        if wiki.public? || wiki.collaborators.include?(user)
           wikis << wiki
         end
       end

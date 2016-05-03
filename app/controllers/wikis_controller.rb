@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
     authorize @wikis
   end
 
@@ -23,7 +23,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki was saved."
-      redirect_to @wiki
+      redirect_to edit_wiki_path(@wiki)
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :new
