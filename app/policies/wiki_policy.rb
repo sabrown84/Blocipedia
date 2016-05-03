@@ -5,8 +5,11 @@ class WikiPolicy < ApplicationPolicy
     true
   end
 
-  def show
+  def create?
     record.public? || user.present?
+  end
+
+  def show?
   end
 
   def update?

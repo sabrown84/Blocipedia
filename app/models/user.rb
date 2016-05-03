@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   private
 
   def set_role
-    self.role = "standard"
+    self.role ||= "standard"
   end
 end
