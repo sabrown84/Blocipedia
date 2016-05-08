@@ -13,7 +13,6 @@ class WikisController < ApplicationController
       flash[:alert] = "You must be signed in to view private wikis."
       redirect_to new_session_path
     end
-    authorize @wiki
   end
 
   def new
@@ -37,12 +36,10 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
 
     @wiki.assign_attributes(wiki_params)
 
