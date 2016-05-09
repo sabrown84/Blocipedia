@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   #has_many :collaborators
   #has_many :collaborations, through: :collaborators, source: :wiki
-  has_many :wikis
+  has_many :wikis, through: :collaborators 
 
   after_initialize :set_role
 

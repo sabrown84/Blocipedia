@@ -1,5 +1,11 @@
 class CollaboratorsController < ApplicationController
 
+  def new
+    @collaborator = Collaborator.new
+    @user = User.all
+    @wiki = Wiki.find(params[:wiki_id])
+  end
+
   def create
     @wiki = Wiki.find(params [:wiki_id])
     @user = User.where(email: params [:email]).take
@@ -19,7 +25,8 @@ class CollaboratorsController < ApplicationController
     end
   end
 
-end
+  def show
+  end 
 
   def destroy
 
