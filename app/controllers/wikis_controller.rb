@@ -2,12 +2,17 @@ class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @wikis = policy_scope(Wiki)
+    @wikis = Wiki.visible_to(current_user)
+    authorize @wikis
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
+
+    unless @wiki.private || current_user
+      flash[:alert] = "You must be signed in to view private wikis."
+      redirect_to new_session_path
+    end
   end
 
   def new
@@ -31,18 +36,16 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
 
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."
-      redirect_to @wiki
+      redirect_to edit_wiki_path(@wiki)
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :edit

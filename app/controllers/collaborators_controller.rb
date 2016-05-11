@@ -7,8 +7,8 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.find(params [:wiki_id])
-    @user = User.where(email: params [:email]).take
+    @wiki = Wiki.find(params[:wiki_id])
+    @user = User.where(email: params[:email]).take
 
     if @user == nil
       flash[:error] = "Collaborator could not be found."
@@ -25,8 +25,10 @@ class CollaboratorsController < ApplicationController
     end
   end
 
+end
+
   def show
-  end 
+  end
 
   def destroy
 

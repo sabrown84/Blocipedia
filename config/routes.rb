@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  resources :wikis do
-    resources :collaborators
-  end
+  resources :wikis
+  resources :collaborators, only: [:create, :destroy]
+
   resources :charges, only: [:new, :create]
 
   get 'downgrade' => 'users#downgrade'
