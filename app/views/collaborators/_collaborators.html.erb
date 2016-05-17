@@ -16,7 +16,7 @@
     <p>
       <%= collaborator.user.email %>
       <% if @wiki.user == current_user %>
-        <%= link_to "", [collaborator], method: :delete, class: 'glyphicon glyphicon-ok' %>
+        <%= link_to "Delete", [collaborator], method: :delete, class: 'glyphicon glyphicon-ok' %>
       <% end %>
     </p>
   <% end %>

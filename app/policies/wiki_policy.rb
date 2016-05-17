@@ -42,7 +42,7 @@ class WikiPolicy < ApplicationPolicy
             if wiki.private != true || wiki.user == user || wiki.collaborators.include?(user)
               wikis << wiki
             end
-        end
+          end
         else
           all_wikis = scope.all
           wikis = []
