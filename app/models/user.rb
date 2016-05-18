@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :sessions
-  has_many :wikis
+  has_many :collaborators
+  has_many :collaborations, through: :collaborators, source: :wiki
+  has_many :wikis, through: :collaborators
 
   after_initialize :set_role
 
@@ -18,6 +19,6 @@ class User < ActiveRecord::Base
   private
 
   def set_role
-    self.role = "standard"
+    self.role ||= "standard"
   end
 end

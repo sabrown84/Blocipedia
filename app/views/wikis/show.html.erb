@@ -1,5 +1,6 @@
 <h1><%= markdown_to_html @wiki.title %></h1>
-
+<%= link_to "Back to wikis", wikis_path %>
+<h1> Wiki </h1>
 <div class="row">
   <div class="col-md-8">
     <p><%= @wiki.body %></p>
