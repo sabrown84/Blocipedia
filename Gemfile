@@ -10,6 +10,7 @@ source 'https://rubygems.org'
 
  group :development do
    gem 'sqlite3'
+   gem 'rubocop', require: false
  end
 
  gem 'sass-rails', '~> 5.0'
