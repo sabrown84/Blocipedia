@@ -1,5 +1,4 @@
 class Wiki < ActiveRecord::Base
-
   belongs_to :user
 
   has_many :collaborators, dependent: :destroy
@@ -9,5 +8,5 @@ class Wiki < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validates :user, presence: true
 
-  scope :visible_to, -> (user, viewable = true) {user ? all : where(public: viewable) }
+  scope :visible_to, -> (user, viewable = true) { user ? all : where(public: viewable) }
 end

@@ -3,7 +3,6 @@ class WikisController < ApplicationController
 
   def index
     @wikis = policy_scope(Wiki)
-    
   end
 
   def show
@@ -52,22 +51,21 @@ class WikisController < ApplicationController
     end
   end
 
-   def destroy
-     @wiki = Wiki.find(params[:id])
-     authorize @wiki
+  def destroy
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
+    if @wiki.destroy
+      flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
+      redirect_to @wiki
+    else
+      flash.now[:alert] = "There was an error deleting the post."
+      render :show
+    end
+  end
 
-     if @wiki.destroy
-       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
-       redirect_to @wiki
-     else
-       flash.now[:alert] = "There was an error deleting the post."
-       render :show
-     end
-   end
+  private
 
-   private
-
-   def wiki_params
-     params.require(:wiki).permit(:title, :body, :private)
-   end
+  def wiki_params
+    params.require(:wiki).permit(:title, :body, :private)
+  end
 end

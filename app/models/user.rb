@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-
   # Include default devise modules. Others available are:
   #:lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :collaborators
   has_many :collaborations, through: :collaborators, source: :wiki
@@ -11,10 +9,9 @@ class User < ActiveRecord::Base
 
   after_initialize :set_role
 
-#  before_save {self.role ||= :standard}
+  # before_save {self.role ||= :standard}
 
   enum role: [:standard, :premium, :admin]
-
 
   private
 

@@ -3,7 +3,6 @@ FactoryGirl.define do
     sequence(:email) { |n| "person#{n}@example.com" }
     password 'helloworld'
     password_confirmation 'helloworld'
-    confirmed_at Time.now
-
+    confirmed_at Time.zone.now
   end
 end
