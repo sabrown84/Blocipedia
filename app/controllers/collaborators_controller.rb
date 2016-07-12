@@ -5,7 +5,7 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id])
   end
 
-  def create
+  def create # rubocop:disable MethodLength, AbcSize
     @wiki = Wiki.find(params[:wiki_id])
     @user = User.where(email: params[:email]).take
     if @user == nil?

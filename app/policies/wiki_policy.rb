@@ -30,7 +30,7 @@ class WikiPolicy < ApplicationPolicy
       @scope = scope
     end
 
-    def resolve
+    def resolve # rubocop:disable MethodLength, AbcSize, CyclomaticComplexity, PerceivedComplexity
       wikis = []
       if user.present? && user.role == 'admin'
         wikis = scope.all
@@ -45,9 +45,7 @@ class WikiPolicy < ApplicationPolicy
         all_wikis = scope.all
         wikis = []
         all_wikis.each do |wiki|
-          if wiki.private? || wiki.collaborators.include?(user)
-            wikis << wiki
-          end
+          wikis << wiki if wiki.private? || wiki.collaborators.include?(user)
         end
       end
       wikis
