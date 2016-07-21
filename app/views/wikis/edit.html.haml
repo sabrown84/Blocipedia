@@ -1,0 +1,22 @@
+= link_to "Back to Wiki", @wiki
+%h1 Edit Wiki
+%br/
+%br/
+.row
+  .col-md-8
+    = form_for @wiki do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control', placeholder: "Enter wiki title"
+      .form-group
+        = f.label :body
+        = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
+      .form-group
+        - if (current_user.admin? || current_user.premium?)
+          - f.label :private, class: 'checkbox' do
+            = f.check_box :private
+            Private Wiki?
+      .form-group
+        = f.submit "Save", class: 'btn btn-success'
+.form-group
+  = render partial: 'collaborators/collaborators', locals: { wiki: @wiki, user: current_user }

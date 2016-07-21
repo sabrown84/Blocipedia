@@ -1,0 +1,10 @@
+.col-md-4
+  %h4 Upgrade to a private membership today!
+  %ul
+    %li Create Private wikis
+.col-md-4
+  = form_tag charges_path do
+    %h4 Click the button!
+    %script.stripe-button{"data-amount" => "<haml_loud", "data-key" => @stripe_btn_data[:key], :src => "https://checkout.stripe.com/checkout.js"}
+      :cdata
+        @stripe_btn_data[:amount]
