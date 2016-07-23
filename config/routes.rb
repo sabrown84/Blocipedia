@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount EpicEditor::Engine => "/"
 
   devise_for :users
 
